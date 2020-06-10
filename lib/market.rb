@@ -44,9 +44,9 @@ hash ={}
   end
 
   def overstocked_items
-    total_inventory.select do |k, v|
-      v[:vendors].size > 1 && v[:quantity] > 50
-    end.to_a.first
+    total_inventory.filter_map do |k, v|
+       k if v[:vendors].size > 1 && v[:quantity] > 50
+    end
   end
 
   def sorted_item_list
