@@ -24,11 +24,7 @@ class Market
     all_items = @vendors.flat_map do |ven|
       ven.inventory.keys
     end.uniq
-<<<<<<< HEAD
     hash ={}
-=======
-hash ={}
->>>>>>> f5d78070e101433be4bb871e6bb49fbe77b0c53b
     all_items.each do |it|
       @vendors.each do |vendor|
         s =  @vendors.select{|vendor| vendor.inventory.include?(it)}.map{|ve| ve.inventory}
@@ -44,11 +40,7 @@ hash ={}
         }
       end
     end
-<<<<<<< HEAD
     hash
-=======
- hash
->>>>>>> f5d78070e101433be4bb871e6bb49fbe77b0c53b
   end
 
   def overstocked_items
