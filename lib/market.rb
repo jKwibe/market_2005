@@ -24,7 +24,7 @@ class Market
     all_items = @vendors.flat_map do |ven|
       ven.inventory.keys
     end.uniq
-hash ={}
+    hash ={}
     all_items.each do |it|
       @vendors.each do |vendor|
         s =  @vendors.select{|vendor| vendor.inventory.include?(it)}.map{|ve| ve.inventory}
@@ -40,16 +40,13 @@ hash ={}
         }
       end
     end
- hash
+    hash
   end
 
   def overstocked_items
-  item = []
-    total_inventory.each do |k, v|
-      item << k if v[:vendors].size > 1 && v[:quantity] > 50
+    total_inventory.filter_map do |k, v|
+       k if v[:vendors].size > 1 && v[:quantity] > 50
     end
-    item
-    
   end
 
   def sorted_item_list
